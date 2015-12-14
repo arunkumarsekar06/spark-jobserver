@@ -69,9 +69,8 @@ object JobServerBuild extends Build {
   // all of them with a single command.
   //
   // NOTE: if we don't define a root project, SBT does it for us, but without our settings
-  // ++ dockerSettings
   lazy val root = Project(id = "root", base = file("."),
-                    settings = commonSettings ++ ourReleaseSettings ++ rootSettings
+                    settings = commonSettings ++ ourReleaseSettings ++ rootSettings // ++ dockerSettings
 		   ).aggregate(jobServer, jobServerApi, jobServerTestJar, akkaApp, jobServerExtras).
                    dependsOn(jobServer, jobServerExtras)
 
